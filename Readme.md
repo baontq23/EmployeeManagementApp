@@ -4,7 +4,7 @@
 
 ## Tính năng
 
-[x] Mở file và nhập thông tin từ file
+- [x] Mở file và nhập thông tin từ file
 - Ghi thông tin vào file
 - Hiển thị danh sách nhân viên lên bảng
 - Tìm nhân viên và hiển thị lên form
