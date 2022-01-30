@@ -20,4 +20,6 @@
 
 Sử dụng [Netbeans](https://www.oracle.com/java/technologies/downloads/) v12.6 và [JDK](https://www.oracle.com/java/technologies/downloads/) mới nhất
 
+## Hình ảnh
+![](https://github.com/baooshacker/EmployeeManagementApp/blob/main/img/UI.png)
 
