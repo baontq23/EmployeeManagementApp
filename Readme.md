@@ -4,17 +4,17 @@
 
 ## Tính năng
 
-- [x] Mở file và nhập thông tin từ file
-- Ghi thông tin vào file
-- Hiển thị danh sách nhân viên lên bảng
-- Tìm nhân viên và hiển thị lên form
-- Hiển thị nhân viên lên form khi click vào một hàng trên bảng
-- Hiển thị thông tin trạng thái
-- Thực hiện các nút điều hướng
-- Thêm nhân viên và có kiểm tra dữ liệu phải nhập trước khi lưu
-- Cập nhật và có kiểm tra dữ liệu phải nhập trước khi lưu
-- Xóa nhân viên
-- Hiển thị đồng hồ hệ thống theo từng phút (6000 mili giây)
+- [] Mở file và nhập thông tin từ file
+- [] Ghi thông tin vào file
+- [] Hiển thị danh sách nhân viên lên bảng
+- [] Tìm nhân viên và hiển thị lên form
+- [] Hiển thị nhân viên lên form khi click vào một hàng trên bảng
+- [] Hiển thị thông tin trạng thái
+- [] Thực hiện các nút điều hướng
+- [] Thêm nhân viên và có kiểm tra dữ liệu phải nhập trước khi lưu
+- [] Cập nhật và có kiểm tra dữ liệu phải nhập trước khi lưu
+- [] Xóa nhân viên
+- [] Hiển thị đồng hồ hệ thống theo từng phút (6000 mili giây)
 
 ## Cài đặt
 
