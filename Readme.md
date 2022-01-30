@@ -23,3 +23,6 @@ Sử dụng [Netbeans](https://www.oracle.com/java/technologies/downloads/) v12.
 ## Hình ảnh
 ![](https://github.com/baooshacker/EmployeeManagementApp/blob/main/img/UI.png)
 
+## Giai đoạn xây dựng
+- [x] Thiết kế giao diện
+- [ ] Xây dựng chức năng
