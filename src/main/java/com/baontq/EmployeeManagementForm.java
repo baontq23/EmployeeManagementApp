@@ -4,18 +4,36 @@
  */
 package com.baontq;
 
+import com.baontq.model.Employee;
+import com.baontq.model.EmployeeList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author MSI
  */
 public class EmployeeManagementForm extends javax.swing.JFrame {
-
+    private DefaultTableModel tblModel = null;
+    private EmployeeList empList = new EmployeeList();
+    private boolean isEditMode = false;
+    
     /**
      * Creates new form EmployeeManagementForm
      */
     public EmployeeManagementForm() {
         initComponents();
         setLocationRelativeTo(null);
+        initTable();
+    }
+    
+    
+    public void initTable(){
+        tblModel = new DefaultTableModel();
+        
+        tblModel.setColumnIdentifiers(new Object[]{"ID", "Họ và tên", "Tuổi", "Email", "Lương"});
+        
+        tblEmployees.setModel(tblModel);
     }
 
     /**
@@ -304,18 +322,70 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
         txtID.setText("");
         txtAge.setText("");
         txtSalary.setText("");
+        
+        isEditMode = false;
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
+        try {
+            Employee emp = new Employee();
+            emp.setID(txtID.getText());
+            emp.setName(txtName.getText());
+            emp.setAge(Integer.parseInt(txtAge.getText()));
+            emp.setEmail(txtEmail.getText());
+            emp.setLuong(Double.parseDouble(txtSalary.getText()));
+            
+            if (isEditMode) {
+                if (empList.findByID(emp.getID()) == null) {
+                    JOptionPane.showMessageDialog(this, "Mã nhân viên không tồn tại để cập nhật. Vui lòng tạo nhân viên mới !");
+                    return;
+                }
+                empList.update(emp);
+            }else{
+                if (empList.findByID(emp.getID()) != null) {
+                    JOptionPane.showMessageDialog(this, "Mã nhân viên đã tồn tại");
+                    return;
+                }
+                empList.add(emp);
+            }
+            
+            empList.renderToTable(tblModel);
+            JOptionPane.showMessageDialog(this, "Đã lưu nhân viên !");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+         try {
+           boolean isOk = empList.deleteByID(txtID.getText());
+           if(isOk) {
+               empList.renderToTable(tblModel);
+               JOptionPane.showMessageDialog(this, "Đã xoá nhân viên !");
+           }else{
+               JOptionPane.showMessageDialog(this, "Mã nhân viên không tồn tại !");
+           }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error " + e.getMessage());
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
-        // TODO add your handling code here:
+        try {
+            Employee emp = empList.findByID(txtID.getText());
+            if(emp != null) {
+                isEditMode = true;
+                txtName.setText(emp.getName());
+                txtAge.setText("" + emp.getAge());
+                txtEmail.setText(emp.getEmail());
+                txtSalary.setText("" + emp.getLuong());
+            }else {
+                JOptionPane.showMessageDialog(this, "Mã nhân viên không tồn tại !");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error " + e.getMessage());
+        }
     }//GEN-LAST:event_btnFindActionPerformed
 
     private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenActionPerformed
