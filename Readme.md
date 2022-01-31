@@ -28,4 +28,5 @@ Sử dụng [Netbeans](https://www.oracle.com/java/technologies/downloads/) v12.
 
 ## Giai đoạn xây dựng
 - [x] Thiết kế giao diện
-- [ ] Xây dựng chức năng
+- [x] Xây dựng chức năng
+- [ ] Kiểm tra dữ liệu đầu vào
