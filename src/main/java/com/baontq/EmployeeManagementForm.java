@@ -14,10 +14,11 @@ import javax.swing.table.DefaultTableModel;
  * @author MSI
  */
 public class EmployeeManagementForm extends javax.swing.JFrame {
+
     private DefaultTableModel tblModel = null;
     private EmployeeList empList = new EmployeeList();
     private boolean isEditMode = false;
-    
+
     /**
      * Creates new form EmployeeManagementForm
      */
@@ -25,14 +26,26 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         initTable();
+        initEmp();
+
+        btnFirstActionPerformed(null);
     }
-    
-    
-    public void initTable(){
+
+    public void initEmp() {
+        empList.add(new Employee("NV01", "bao", "baontq@gmail.com", 4333, 14));
+        empList.add(new Employee("NV02", "nam", "namnt@gmail.com", 323, 27));
+        empList.add(new Employee("NV03", "hoang", "hoanght@gmail.com", 1213, 17));
+        empList.add(new Employee("NV04", "khanh", "khanhft@gmail.com", 4242, 15));
+        empList.add(new Employee("NV05", "thu", "thunt@gmail.com", 1234, 14));
+
+        empList.renderToTable(tblModel);
+    }
+
+    public void initTable() {
         tblModel = new DefaultTableModel();
-        
+
         tblModel.setColumnIdentifiers(new Object[]{"ID", "Họ và tên", "Tuổi", "Email", "Lương"});
-        
+
         tblEmployees.setModel(tblModel);
     }
 
@@ -74,6 +87,7 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
         btnFind = new javax.swing.JButton();
         btnOpen = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        lblStatusEdit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,14 +107,34 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         btnFirst.setText("|<");
+        btnFirst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFirstActionPerformed(evt);
+            }
+        });
 
         btnPrevious.setText("<<");
+        btnPrevious.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPreviousActionPerformed(evt);
+            }
+        });
 
         btnNext.setText(">>");
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextActionPerformed(evt);
+            }
+        });
 
         btnLast.setText(">|");
+        btnLast.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLastActionPerformed(evt);
+            }
+        });
 
-        lblStatus.setText("Record 1 of 10");
+        lblStatus.setText("Record ... of ...");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -144,6 +178,11 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblEmployees.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblEmployeesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblEmployees);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -223,6 +262,8 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        lblStatusEdit.setText("Trạng thái: Thêm mới / Chỉnh sửa");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -256,19 +297,22 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
                                         .addComponent(jLabel2)))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                                        .addComponent(lblStatusEdit))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(25, 25, 25)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel4))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45))))
         );
@@ -286,7 +330,8 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblStatusEdit))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -324,6 +369,8 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
         txtSalary.setText("");
         
         isEditMode = false;
+        
+        lblStatusEdit.setText("Trạng thái: Thêm mới");
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -334,21 +381,21 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
             emp.setAge(Integer.parseInt(txtAge.getText()));
             emp.setEmail(txtEmail.getText());
             emp.setLuong(Double.parseDouble(txtSalary.getText()));
-            
+
             if (isEditMode) {
                 if (empList.findByID(emp.getID()) == null) {
                     JOptionPane.showMessageDialog(this, "Mã nhân viên không tồn tại để cập nhật. Vui lòng tạo nhân viên mới !");
                     return;
                 }
                 empList.update(emp);
-            }else{
+            } else {
                 if (empList.findByID(emp.getID()) != null) {
                     JOptionPane.showMessageDialog(this, "Mã nhân viên đã tồn tại");
                     return;
                 }
                 empList.add(emp);
             }
-            
+
             empList.renderToTable(tblModel);
             JOptionPane.showMessageDialog(this, "Đã lưu nhân viên !");
         } catch (Exception e) {
@@ -357,15 +404,15 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-         try {
-           boolean isOk = empList.deleteByID(txtID.getText());
-           if(isOk) {
-               empList.renderToTable(tblModel);
-               JOptionPane.showMessageDialog(this, "Đã xoá nhân viên !");
-           }else{
-               JOptionPane.showMessageDialog(this, "Mã nhân viên không tồn tại !");
-           }
-            
+        try {
+            boolean isOk = empList.deleteByID(txtID.getText());
+            if (isOk) {
+                empList.renderToTable(tblModel);
+                JOptionPane.showMessageDialog(this, "Đã xoá nhân viên !");
+            } else {
+                JOptionPane.showMessageDialog(this, "Mã nhân viên không tồn tại !");
+            }
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error " + e.getMessage());
         }
@@ -374,19 +421,25 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         try {
             Employee emp = empList.findByID(txtID.getText());
-            if(emp != null) {
-                isEditMode = true;
-                txtName.setText(emp.getName());
-                txtAge.setText("" + emp.getAge());
-                txtEmail.setText(emp.getEmail());
-                txtSalary.setText("" + emp.getLuong());
-            }else {
+            if (emp != null) {
+                fillEmployeeToForm(emp);
+            } else {
                 JOptionPane.showMessageDialog(this, "Mã nhân viên không tồn tại !");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error " + e.getMessage());
         }
     }//GEN-LAST:event_btnFindActionPerformed
+
+    private void fillEmployeeToForm(Employee emp) {
+        isEditMode = true;
+        lblStatusEdit.setText("Trạng thái: Chỉnh sửa");
+        txtID.setText(emp.getID());
+        txtName.setText(emp.getName());
+        txtAge.setText("" + emp.getAge());
+        txtEmail.setText(emp.getEmail());
+        txtSalary.setText("" + emp.getLuong());
+    }
 
     private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenActionPerformed
         // TODO add your handling code here:
@@ -395,6 +448,53 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
+        empList.first();
+        lblStatus.setText(empList.getCurrentEmpInfo());
+        Employee emp = empList.getCurrentEmpIndex();
+        fillEmployeeToForm(emp);
+        tblEmployees.setRowSelectionInterval(empList.getEmpIndex(),empList.getEmpIndex());
+    }//GEN-LAST:event_btnFirstActionPerformed
+
+    private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
+        empList.previous();
+        lblStatus.setText(empList.getCurrentEmpInfo());
+        Employee emp = empList.getCurrentEmpIndex();
+        fillEmployeeToForm(emp);
+        tblEmployees.setRowSelectionInterval(empList.getEmpIndex(),empList.getEmpIndex());
+    }//GEN-LAST:event_btnPreviousActionPerformed
+
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        empList.next();
+        lblStatus.setText(empList.getCurrentEmpInfo());
+        Employee emp = empList.getCurrentEmpIndex();
+        fillEmployeeToForm(emp);
+        tblEmployees.setRowSelectionInterval(empList.getEmpIndex(),empList.getEmpIndex());
+    }//GEN-LAST:event_btnNextActionPerformed
+
+    private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
+        empList.last();
+        lblStatus.setText(empList.getCurrentEmpInfo());
+        Employee emp = empList.getCurrentEmpIndex();
+        fillEmployeeToForm(emp);
+        tblEmployees.setRowSelectionInterval(empList.getEmpIndex(),empList.getEmpIndex());
+    }//GEN-LAST:event_btnLastActionPerformed
+
+    private void tblEmployeesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmployeesMouseClicked
+        int row = tblEmployees.getSelectedRow();
+        if (row >= 0) {
+            String empID = (String) tblEmployees.getValueAt(row, 0);
+
+            Employee emp = empList.findByID(empID);
+            if (emp != null) {
+                fillEmployeeToForm(emp);
+
+                empList.setCurrentEmp(emp);
+                lblStatus.setText(empList.getCurrentEmpInfo());
+            }
+        }
+    }//GEN-LAST:event_tblEmployeesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -455,6 +555,7 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblStatusEdit;
     private javax.swing.JTable tblEmployees;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtEmail;

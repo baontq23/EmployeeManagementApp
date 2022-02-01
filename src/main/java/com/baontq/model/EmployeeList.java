@@ -11,6 +11,14 @@ public class EmployeeList {
 
     private ArrayList<Employee> list = new ArrayList<>();
     private int index = 0;
+    
+    public String getCurrentEmpInfo() {
+        return "Record: " + (index + 1) + " of " + list.size();
+    }
+    
+    public void setCurrentEmp(Employee emp) {
+        index = list.indexOf(emp);
+    }
 
     public void first() {
         if (index > 0) {
@@ -43,7 +51,7 @@ public class EmployeeList {
     }
 
     public Employee getCurrentEmpIndex() {
-        if (list.size() == 0) {
+        if (list.isEmpty()) {
             return null;
         }
         return list.get(index);
