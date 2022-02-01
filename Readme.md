@@ -8,9 +8,9 @@
 - [ ] Ghi thông tin vào file
 - [x] Hiển thị danh sách nhân viên lên bảng
 - [x] Tìm nhân viên và hiển thị lên form
-- [ ] Hiển thị nhân viên lên form khi click vào một hàng trên bảng
-- [ ] Hiển thị thông tin trạng thái
-- [ ] Thực hiện các nút điều hướng
+- [x] Hiển thị nhân viên lên form khi click vào một hàng trên bảng
+- [x] Hiển thị thông tin trạng thái
+- [x] Thực hiện các nút điều hướng
 - [ ] Thêm nhân viên và có kiểm tra dữ liệu phải nhập trước khi lưu
 - [ ] Cập nhật và có kiểm tra dữ liệu phải nhập trước khi lưu
 - [x] Xóa nhân viên
