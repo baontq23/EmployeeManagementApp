@@ -11,8 +11,8 @@
 - [x] Hiển thị nhân viên lên form khi click vào một hàng trên bảng
 - [x] Hiển thị thông tin trạng thái
 - [x] Thực hiện các nút điều hướng
-- [ ] Thêm nhân viên và có kiểm tra dữ liệu phải nhập trước khi lưu
-- [ ] Cập nhật và có kiểm tra dữ liệu phải nhập trước khi lưu
+- [x] Thêm nhân viên và có kiểm tra dữ liệu phải nhập trước khi lưu
+- [x] Cập nhật và có kiểm tra dữ liệu phải nhập trước khi lưu
 - [x] Xóa nhân viên
 - [ ] Hiển thị đồng hồ hệ thống theo từng phút (6000 mili giây)
 
@@ -30,4 +30,5 @@ Sử dụng [Netbeans](https://www.oracle.com/java/technologies/downloads/) v12.
 ## Giai đoạn xây dựng
 - [x] Thiết kế giao diện
 - [x] Xây dựng chức năng
-- [ ] Kiểm tra dữ liệu đầu vào
+- [x] Kiểm tra dữ liệu đầu vào
+- [ ] Lưu dữ liệu ra file
