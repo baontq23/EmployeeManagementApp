@@ -4,8 +4,10 @@
  */
 package com.baontq;
 
+import com.baontq.helper.Validator;
 import com.baontq.model.Employee;
 import com.baontq.model.EmployeeList;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -368,6 +370,11 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
         txtAge.setText("");
         txtSalary.setText("");
         
+        txtName.setBackground(Color.white);
+        txtEmail.setBackground(Color.white);
+        txtID.setBackground(Color.white);
+        txtAge.setBackground(Color.white);
+        txtSalary.setBackground(Color.white);
         isEditMode = false;
         
         lblStatusEdit.setText("Trạng thái: Thêm mới");
@@ -375,6 +382,18 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         try {
+            StringBuilder sb = new StringBuilder();
+            
+            Validator.checkEmpty(txtID, sb, "Mã nhân viên không để trống");
+            Validator.checkEmpty(txtName, sb, "Tên nhân viên không để trống");
+            Validator.checkAge(txtAge, sb);
+            Validator.checkSalary(txtSalary, sb);
+            Validator.checkEmail(txtEmail, sb);
+            
+            if (sb.length() > 0) {
+                JOptionPane.showMessageDialog(this, sb.toString(), "Dữ liệu không hợp lệ", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             Employee emp = new Employee();
             emp.setID(txtID.getText());
             emp.setName(txtName.getText());
