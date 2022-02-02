@@ -7,6 +7,7 @@ package com.baontq;
 import com.baontq.helper.Validator;
 import com.baontq.model.Employee;
 import com.baontq.model.EmployeeList;
+import com.baontq.threading.ClockThread;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -29,8 +30,13 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         initTable();
         initEmp();
-
         btnFirstActionPerformed(null);
+        initClock();
+    }
+
+    private void initClock() {
+        ClockThread th = new ClockThread(lblClock);
+        th.start();
     }
 
     public void initEmp() {
@@ -78,7 +84,7 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
         btnNext = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
         lblStatus = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lblClock = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEmployees = new javax.swing.JTable();
@@ -167,7 +173,9 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
-        jLabel7.setText("jLabel7");
+        lblClock.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblClock.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblClock.setText("0:0:00 AM");
 
         tblEmployees.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -282,7 +290,7 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(150, 150, 150)
-                        .addComponent(jLabel7)
+                        .addComponent(lblClock)
                         .addGap(66, 66, 66))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
@@ -324,7 +332,7 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel7))
+                    .addComponent(lblClock))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -567,12 +575,12 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblClock;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblStatusEdit;
     private javax.swing.JTable tblEmployees;

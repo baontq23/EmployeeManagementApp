@@ -14,7 +14,7 @@
 - [x] Thêm nhân viên và có kiểm tra dữ liệu phải nhập trước khi lưu
 - [x] Cập nhật và có kiểm tra dữ liệu phải nhập trước khi lưu
 - [x] Xóa nhân viên
-- [ ] Hiển thị đồng hồ hệ thống theo từng phút (6000 mili giây)
+- [x] Hiển thị đồng hồ hệ thống theo từng phút (6000 mili giây)
 
 ## Cài đặt
 
@@ -31,4 +31,5 @@ Sử dụng [Netbeans](https://www.oracle.com/java/technologies/downloads/) v12.
 - [x] Thiết kế giao diện
 - [x] Xây dựng chức năng
 - [x] Kiểm tra dữ liệu đầu vào
+- [x] Xử lý đa luồng
 - [ ] Lưu dữ liệu ra file
