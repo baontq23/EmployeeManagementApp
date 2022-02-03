@@ -22,8 +22,7 @@ Sử dụng [Netbeans](https://www.oracle.com/java/technologies/downloads/) v12.
 
 ## Hình ảnh
 <p align="center">
-  <img src="https://github.com/baooshacker/EmployeeManagementApp/blob/main/img/UI.png"/>
-  <img src="https://github.com/baooshacker/EmployeeManagementApp/blob/main/img/feature.png"/>
+  <img src="https://github.com/baooshacker/EmployeeManagementApp/blob/main/img/MultiThread.png"/>
 </p>
 
 
