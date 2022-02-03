@@ -34,7 +34,7 @@ public void initEmp() {
         empList.renderToTable(tblModel);
     }
 ```
-Và ở phiên bản 1.5 tôi đã ==vô hiệu hoá== nó.
+Và ở phiên bản 1.5 tôi đã vô hiệu hoá nó.
 
 Đường dẫn đọc ghi file, bạn có thể thay đổi trong phương thức `saveToFile()` và `loadFormFile()` tại lớp EmployeeList.
 
