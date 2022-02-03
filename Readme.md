@@ -4,8 +4,8 @@
 
 ## Tính năng
 
-- [ ] Mở file và nhập thông tin từ file
-- [ ] Ghi thông tin vào file
+- [x] Mở file và nhập thông tin từ file
+- [x] Ghi thông tin vào file
 - [x] Hiển thị danh sách nhân viên lên bảng
 - [x] Tìm nhân viên và hiển thị lên form
 - [x] Hiển thị nhân viên lên form khi click vào một hàng trên bảng
@@ -20,6 +20,24 @@
 
 Sử dụng [Netbeans](https://www.oracle.com/java/technologies/downloads/) v12.6 và [JDK](https://www.oracle.com/java/technologies/downloads/) mới nhất
 
+## Chú ý
+
+Trong quá trình xây dựng, tôi sử dụng 1 phương thức để tạo ra dữ liệu để thuận tiện hơn trong việc kiểm tra sự chính xác của chương trình
+```
+public void initEmp() {
+        empList.add(new Employee("NV01", "bao", "baontq@gmail.com", 4333, 14));
+        empList.add(new Employee("NV02", "nam", "namnt@gmail.com", 323, 27));
+        empList.add(new Employee("NV03", "hoang", "hoanght@gmail.com", 1213, 17));
+        empList.add(new Employee("NV04", "khanh", "khanhft@gmail.com", 4242, 15));
+        empList.add(new Employee("NV05", "thu", "thunt@gmail.com", 1234, 14));
+
+        empList.renderToTable(tblModel);
+    }
+```
+Và ở phiên bản 1.5 tôi đã vô hiệu hoá nó.
+
+Đường dẫn đọc ghi file, bạn có thể thay đổi trong phương thức `saveToFile()` và `loadFormFile()` tại lớp EmployeeList
+
 ## Hình ảnh
 <p align="center">
   <img src="https://github.com/baooshacker/EmployeeManagementApp/blob/main/img/MultiThread.png"/>
@@ -31,4 +49,4 @@ Sử dụng [Netbeans](https://www.oracle.com/java/technologies/downloads/) v12.
 - [x] Xây dựng chức năng
 - [x] Kiểm tra dữ liệu đầu vào
 - [x] Xử lý đa luồng
-- [ ] Lưu dữ liệu ra file
+- [x] Lưu dữ liệu ra file
