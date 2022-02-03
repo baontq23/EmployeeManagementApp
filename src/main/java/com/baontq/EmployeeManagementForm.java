@@ -29,9 +29,10 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         initTable();
-        initEmp();
-        btnFirstActionPerformed(null);
+        //initEmp();
+        //btnFirstActionPerformed(null);
         initClock();
+
     }
 
     private void initClock() {
@@ -377,27 +378,27 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
         txtID.setText("");
         txtAge.setText("");
         txtSalary.setText("");
-        
+
         txtName.setBackground(Color.white);
         txtEmail.setBackground(Color.white);
         txtID.setBackground(Color.white);
         txtAge.setBackground(Color.white);
         txtSalary.setBackground(Color.white);
         isEditMode = false;
-        
+
         lblStatusEdit.setText("Trạng thái: Thêm mới");
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         try {
             StringBuilder sb = new StringBuilder();
-            
+
             Validator.checkEmpty(txtID, sb, "Mã nhân viên không để trống");
             Validator.checkEmpty(txtName, sb, "Tên nhân viên không để trống");
             Validator.checkAge(txtAge, sb);
             Validator.checkSalary(txtSalary, sb);
             Validator.checkEmail(txtEmail, sb);
-            
+
             if (sb.length() > 0) {
                 JOptionPane.showMessageDialog(this, sb.toString(), "Dữ liệu không hợp lệ", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -469,10 +470,21 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
     }
 
     private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenActionPerformed
-        // TODO add your handling code here:
+        try {
+            empList.loadFormFile();
+            empList.renderToTable(tblModel);
+            btnFirstActionPerformed(null);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
     }//GEN-LAST:event_btnOpenActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        try {
+            empList.saveToFile();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
 
@@ -481,7 +493,7 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
         lblStatus.setText(empList.getCurrentEmpInfo());
         Employee emp = empList.getCurrentEmpIndex();
         fillEmployeeToForm(emp);
-        tblEmployees.setRowSelectionInterval(empList.getEmpIndex(),empList.getEmpIndex());
+        tblEmployees.setRowSelectionInterval(empList.getEmpIndex(), empList.getEmpIndex());
     }//GEN-LAST:event_btnFirstActionPerformed
 
     private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
@@ -489,7 +501,7 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
         lblStatus.setText(empList.getCurrentEmpInfo());
         Employee emp = empList.getCurrentEmpIndex();
         fillEmployeeToForm(emp);
-        tblEmployees.setRowSelectionInterval(empList.getEmpIndex(),empList.getEmpIndex());
+        tblEmployees.setRowSelectionInterval(empList.getEmpIndex(), empList.getEmpIndex());
     }//GEN-LAST:event_btnPreviousActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
@@ -497,7 +509,7 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
         lblStatus.setText(empList.getCurrentEmpInfo());
         Employee emp = empList.getCurrentEmpIndex();
         fillEmployeeToForm(emp);
-        tblEmployees.setRowSelectionInterval(empList.getEmpIndex(),empList.getEmpIndex());
+        tblEmployees.setRowSelectionInterval(empList.getEmpIndex(), empList.getEmpIndex());
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
@@ -505,7 +517,7 @@ public class EmployeeManagementForm extends javax.swing.JFrame {
         lblStatus.setText(empList.getCurrentEmpInfo());
         Employee emp = empList.getCurrentEmpIndex();
         fillEmployeeToForm(emp);
-        tblEmployees.setRowSelectionInterval(empList.getEmpIndex(),empList.getEmpIndex());
+        tblEmployees.setRowSelectionInterval(empList.getEmpIndex(), empList.getEmpIndex());
     }//GEN-LAST:event_btnLastActionPerformed
 
     private void tblEmployeesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmployeesMouseClicked

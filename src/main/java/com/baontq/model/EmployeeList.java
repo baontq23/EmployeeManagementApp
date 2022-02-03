@@ -1,5 +1,6 @@
 package com.baontq.model;
 
+import com.baontq.helper.XFile;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -11,6 +12,14 @@ public class EmployeeList {
 
     private ArrayList<Employee> list = new ArrayList<>();
     private int index = 0;
+    
+    public void saveToFile() throws Exception {
+        XFile.writeObject("employees.dat", list);
+    }
+    
+    public void loadFormFile() throws Exception {
+        list = (ArrayList<Employee>) XFile.readObject("employees.dat");
+    }
     
     public String getCurrentEmpInfo() {
         return "Record: " + (index + 1) + " of " + list.size();
